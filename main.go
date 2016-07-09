@@ -30,7 +30,7 @@ func main() {
 	r := mux.NewRouter().StrictSlash(false)
 	r.HandleFunc("/", HomeHandler).Methods("GET")
 	r.HandleFunc("/pages/new", NewPageHandler).Methods("GET")
-	r.HandleFunc("/pages/new/{page}", NewPageHandler).Methods("GET")
+	r.HandleFunc("/pages/new/{page}", NewNamedPageHandler).Methods("GET")
 	r.HandleFunc("/pages/{page}/edit", EditPageHandler).Methods("GET")
 	r.HandleFunc("/pages", SavePageHandler).Methods("POST")
 	r.HandleFunc("/pages/{page}", UpdatePageHandler).Methods("POST")

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -8,6 +9,13 @@ import (
 
 func NewPageHandler(w http.ResponseWriter, r *http.Request) {
 	getTemplate(NEW_PAGE_TEMPLATE).Execute(w, nil)
+}
+
+func NewNamedPageHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	name := vars["page"]
+	title := titleFromName(name)
+	getTemplate(NEW_NAMED_PAGE_TEMPLATE).Execute(w, title)
 }
 
 func EditPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -82,7 +90,8 @@ func ShowWikiHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Println("ERROR loading page:", err)
-		http.Redirect(w, r, "/pages/new", http.StatusMovedPermanently)
+		newPageUrl := fmt.Sprintf("/pages/new/%s", name)
+		http.Redirect(w, r, newPageUrl, http.StatusMovedPermanently)
 	} else {
 		getTemplate(SHOW_WIKI_PAGE_TEMPLATE).Execute(w, page)
 	}

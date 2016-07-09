@@ -38,6 +38,26 @@ const NEW_PAGE_TEMPLATE = `
 {{ end }}
 `
 
+const NEW_NAMED_PAGE_TEMPLATE = `
+{{ define "content" }}
+  <div class="page-header">
+    <h1>Create a new page</h1>
+  </div>
+  <form action="/pages" method="post">
+    <div class="form-group">
+      <input type="text" name="title" value="{{.}}" class="form-control">
+    </div>
+    <div class="form-group">
+      <textarea name="content" rows="25" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Save" class="btn btn-primary">
+      <a href="/" class="btn btn-default">Cancel</a>
+    </div>
+  </form>
+{{ end }}
+`
+
 const LOGIN_TEMPLATE = `
 {{ define "content" }}
 <div id="content">
