@@ -64,5 +64,9 @@ func main() {
 
 	addr := fmt.Sprintf("%s:%d", *host, *port)
 	log.Println("starting tethys @", addr)
-	http.ListenAndServe(addr, n)
+	err := http.ListenAndServe(addr, n)
+
+	if err != nil {
+		fmt.Println("ERROR:", err)
+	}
 }
