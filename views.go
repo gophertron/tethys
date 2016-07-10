@@ -70,6 +70,12 @@ const SHOW_WIKI_PAGE_TEMPLATE = `
 {{ define "content" }}
 <div id="content">
   <div class="page-header"><h1>{{.Title}}</h1></div>
+  <div class="btn-group" role="group" aria-label="...">
+    <a href="/pages/{{.Name}}/edit" class="btn btn-default">Edit</a>
+    <a href="/wiki/{{.Name}}/history" class="btn btn-default">History</a>
+    <a href="/wiki" class="btn btn-default">Pages</a>
+    <a href="/pages/new" class="btn btn-default">New</a>
+  </div>
   <div>{{.Markup}}</div>
 </div>
 {{ end }}
